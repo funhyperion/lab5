@@ -10,13 +10,22 @@
   <tr>
     <th>ID</th>
     <th>Name</th>
+    <th>Breed</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Owner Name</th>
     <th>Actions</th>
+
   </tr>
   </thead>
   <tbody>
   <tr th:each="horse : ${horses}">
     <td th:text="${horse.id}"></td>
     <td th:text="${horse.nickname}"></td>
+    <td th:text="${horse.age}"></td>
+    <td th:text="${horse.breed}"></td>
+    <td th:text="${horse.gender}"></td>
+    <td th:text="${horse.owner.name}"></td>
     <td>
       <a th:href="@{'/showFormForUpdate/' + ${horse.id}}">Edit</a> |
       <a th:href="@{'/deleteHorse/' + ${horse.id}}">Delete</a>
@@ -25,5 +34,6 @@
   </tbody>
 </table>
 <a href="/showNewHorseForm">Add New Horse</a>
+<a href="/">Back</a>
 </body>
 </html>

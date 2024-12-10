@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Owners</title>
+</head>
+<body>
+<h2>Owners List</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owners}">
+        <td th:text="${owner.id}"></td>
+        <td th:text="${owner.name}"></td>
+        <td>
+            <a th:href="@{'/showFormForUpdateOwner/' + ${owner.id}}">Edit</a> |
+            <a th:href="@{'/deleteOwner/' + ${owner.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/showNewOwnerForm">Add New Owner</a>
+<a href="/">Back</a>
+</body>
+</html>

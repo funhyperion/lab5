@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add New Horse</title>
+    <title>Update Horse</title>
 </head>
 <body>
-<h2>Add New Horse</h2>
+<h2>Update Horse</h2>
 <form action="#" th:action="@{/saveHorse}" th:object="${horse}" method="post">
     <div>
         <label>Name:</label>
         <input type="text" th:field="*{nickname}" />
     </div>
     <div>
-        <button type="submit">Save</button>
+        <label>Gender:</label>
+        <input type="text" th:field="*{gender}" />
+    </div>
+    <div>
+        <label>Breed:</label>
+        <input type="text" th:field="*{breed}" />
+    </div>
+    <div>
+        <label>Age:</label>
+        <input type="number" th:field="*{age}" />
+    </div>
+    <div>
+        <label>Owner:</label>
+        <input type="text" th:field="*{owner}"/>
+    </div>
+    <div>
+        <button type="submit">Update</button>
     </div>
 </form>
 <a href="/horses">Back</a>

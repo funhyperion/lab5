@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Horses of Jokey</title>
+</head>
+<body>
+<h2>Horses of Jokey: <span th:text="${jokey.name}"></span></h2>
+
+<h3>Horses Assigned to this Jokey</h3>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="horse : ${horses}">
+        <td th:text="${horse.id}"></td>
+        <td th:text="${horse.nickname}"></td>
+        <td>
+            <!-- Удаление лошади -->
+            <form th:action="@{'/jokey/' + ${jokey.id} + '/removeHorse'}" method="post">
+                <input type="hidden" name="horseId" th:value="${horse.id}" />
+                <button type="submit">Remove Horse</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Add Horse to this Jokey</h3>
+<form th:action="@{'/jokey/' + ${jokey.id} + '/addHorse'}" method="post">
+    <div>
+        <label for="horseId">Horse ID:</label>
+        <input type="text" id="horseId" name="horseId" placeholder="Enter Horse ID" required />
+    </div>
+    <button type="submit">Add Horse</button>
+</form>
+
+<a href="/jokeys">Back to All Jokeys</a>
+</body>
+</html>

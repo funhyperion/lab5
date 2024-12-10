@@ -5,10 +5,26 @@
 </head>
 <body>
 <h2>Update Horse</h2>
-<form action="#" th:action="@{'/updateHorse/' + ${horse.id}}" th:object="${horse}" method="post">
+<form action="#" th:action="@{/updateHorse/{id}(id=${horse.id})}" th:object="${horse}" method="post">
     <div>
         <label>Name:</label>
         <input type="text" th:field="*{nickname}" />
+    </div>
+    <div>
+        <label>Gender:</label>
+        <input type="text" th:field="*{gender}" />
+    </div>
+    <div>
+        <label>Breed:</label>
+        <input type="text" th:field="*{breed}" />
+    </div>
+    <div>
+        <label>Age:</label>
+        <input type="number" th:field="*{age}" />
+    </div>
+    <div>
+        <label>Owner ID:</label>
+        <input type="number" th:field="*{owner.id}"/>
     </div>
     <div>
         <button type="submit">Update</button>

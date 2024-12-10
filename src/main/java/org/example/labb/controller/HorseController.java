@@ -1,6 +1,8 @@
 package org.example.labb.controller;
 
 import org.example.labb.entity.Horse;
+import org.example.labb.entity.Owner;
+import org.example.labb.service.OwnerService;
 import org.example.labb.service.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import java.util.List;
 public class HorseController {
     @Autowired
     private HorseService horseService;
+    @Autowired
+    private OwnerService ownerService;
+
 
     @GetMapping("/horses")
     public String showHorses(Model model) {
@@ -28,6 +33,7 @@ public class HorseController {
         return "new_horse";
     }
 
+     // Save horse and connect with owner
     @PostMapping("/saveHorse")
     public String saveHorse(@ModelAttribute("horse") Horse horse) {
         horseService.createHorse(horse);
@@ -43,13 +49,28 @@ public class HorseController {
 
     @PostMapping("/updateHorse/{id}")
     public String updateHorse(@PathVariable(value = "id") int id, @ModelAttribute("horse") Horse newHorse) {
-        horseService.updateHorse(id, newHorse);
+
+        Horse horse = horseService.getHorseById(id).orElseThrow(() -> new RuntimeException("Horse not found"));
+
+        Owner owner = ownerService.getOwnerById(newHorse.getOwner().getId()).orElseThrow(() -> new RuntimeException("Owner not found"));
+
+        horse.setOwner(owner);
+
+        horse.setNickname(newHorse.getNickname());
+        horse.setGender(newHorse.getGender());
+        horse.setBreed(newHorse.getBreed());
+        horse.setAge(newHorse.getAge());
+
+        horseService.updateHorse(id, horse);
+
         return "redirect:/horses";
     }
-
     @GetMapping("/deleteHorse/{id}")
     public String deleteHorse(@PathVariable(value = "id") int id) {
         this.horseService.deleteHorse(id);
         return "redirect:/horses";
     }
+
+
+
 }

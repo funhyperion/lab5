@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Jokey</title>
+</head>
+<body>
+<h2>Update Jokey</h2>
+<form action="#" th:action="@{'/updateJokey/' + ${jokey.id}}" th:object="${jokey}" method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+<a href="/jokeys">Back</a>
+</body>
+</html>

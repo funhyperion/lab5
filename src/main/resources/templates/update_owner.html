@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Jokey</title>
+</head>
+<body>
+<h2>Update Jokey</h2>
+<form action="#" th:action="@{'/updateOwner/' + ${owner.id}}" th:object="${owner}" method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+<a href="/Owners">Back</a>
+</body>
+</html>

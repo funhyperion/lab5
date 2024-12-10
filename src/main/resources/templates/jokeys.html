@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Jokeys</title>
+</head>
+<body>
+<h2>Jokeys List</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="jokey : ${jokeys}">
+        <td th:text="${jokey.id}"></td>
+        <td th:text="${jokey.name}"></td>
+        <td>
+            <a th:href="@{'/showFormForUpdateJokey/' + ${jokey.id}}">Edit</a> |
+            <a th:href="@{'/deleteJokey/' + ${jokey.id}}">Delete</a> |
+            <a th:href="@{'/jokey/' + ${jokey.id} + '/horses'}">View Horses</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<a href="/showNewJokeyForm">Add New Jokey</a>
+<a href="/">Back</a>
+</body>
+</html>
