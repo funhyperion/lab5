@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Horses</title>
+</head>
+<body>
+<h2>Horses List</h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="horse : ${horses}">
+    <td th:text="${horse.id}"></td>
+    <td th:text="${horse.nickname}"></td>
+    <td>
+      <a th:href="@{'/showFormForUpdate/' + ${horse.id}}">Edit</a> |
+      <a th:href="@{'/deleteHorse/' + ${horse.id}}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/showNewHorseForm">Add New Horse</a>
+</body>
+</html>
